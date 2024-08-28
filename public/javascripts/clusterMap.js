@@ -3,7 +3,9 @@ maptilersdk.config.apiKey = maptilerApiKey;
 const map = new maptilersdk.Map({
     container: 'cluster-map',
     style: maptilersdk.MapStyle.BRIGHT,
-    center: [-103.59179687498357, 40.66995747013945],
+    //center: [-103.59179687498357, 40.66995747013945],
+    center: [79.088860, 21.146633], // Coordinates for India
+
     zoom: 3
 });
 
