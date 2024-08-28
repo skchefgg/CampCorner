@@ -3,7 +3,7 @@ const Campground = require('../models/campground');
 // const mapBoxToken = process.env.MAPBOX_TOKEN;
 // const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const maptilerClient = require("@maptiler/client");
-maptilerClient.config.apiKey = process.env.CjuQlQInc1dLcbuVvOp7;
+maptilerClient.config.apiKey = process.env.MAPTILER_API_KEY;
 const { cloudinary } = require("../cloudinary");
 
 
@@ -23,11 +23,12 @@ module.exports.createCampground = async (req, res, next) => {
     // }).send()
     // const campground = new Campground(req.body.campground);
     // campground.geometry = geoData.body.features[0].geometry;
-    // campground.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
-    // campground.author = req.user._id;
     const geoData = await maptilerClient.geocoding.forward(req.body.campground.location, { limit: 1 });
-const campground = new Campground(req.body.campground);
-campground.geometry = geoData.features[0].geometry;
+    const campground = new Campground(req.body.campground);
+    campground.geometry = geoData.features[0].geometry; 
+    campground.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    campground.author = req.user._id;
+    
     await campground.save();
     console.log(campground);
     req.flash('success', 'Successfully made a new campground!');

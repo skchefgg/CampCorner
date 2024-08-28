@@ -140,12 +140,13 @@ app.use(
             childSrc: ["blob:"],
             objectSrc: [],
             imgSrc: [
-                
-                    // all your other existing code
-                    
-                    // add this:
-                    "https://api.maptiler.com/",
-                
+                "'self'",
+                "blob:",
+                "data:",
+                "https://res.cloudinary.com/douqbebwk/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT! 
+                "https://images.unsplash.com",
+                "https://api.maptiler.com/",
+
             ],
             fontSrc: ["'self'", ...fontSrcUrls],
         },
